@@ -1,0 +1,107 @@
+{
+	"name": "@acdh-oeaw/prestatic",
+	"version": "0.0.0",
+	"license": "MIT",
+	"type": "module",
+	"main": "./dist/generate.js",
+	"exports": {
+		".": "./dist/generate.js"
+	},
+	"bin": {
+		"prestatic": "./dist/cli.js"
+	},
+	"files": [
+		"dist"
+	],
+	"sideEffects": false,
+	"engines": {
+		"node": ">=20",
+		"pnpm": "9.x"
+	},
+	"packageManager": "pnpm@9.4.0",
+	"scripts": {
+		"build": "tsup",
+		"changeset:add": "changeset add",
+		"changeset:status": "changeset status --verbose",
+		"ci:release": "changeset publish",
+		"ci:version": "changeset version && prettier \"**/CHANGELOG.md\" --write",
+		"format:check": "prettier . \"!./test/fixtures/**\" --cache --check --ignore-path ./.gitignore",
+		"format:fix": "pnpm run format:check --write",
+		"lint:check": "eslint . --cache --ignore-path ./.gitignore",
+		"lint:fix": "pnpm run lint:check --fix",
+		"prepare": "run-s setup",
+		"prepublishOnly": "run-s validate build",
+		"setup": "is-ci || simple-git-hooks",
+		"test": "NODE_OPTIONS=\"--import tsx\" uvu",
+		"types:check": "tsc --noEmit",
+		"validate": "run-p format:check lint:check types:check test"
+	},
+	"dependencies": {
+		"@acdh-oeaw/lib": "^0.1.12",
+		"vfile": "^6.0.1"
+	},
+	"peerDependencies": {
+		"@keystatic/core": "0.x"
+	},
+	"devDependencies": {
+		"@acdh-oeaw/commitlint-config": "^1.0.0",
+		"@acdh-oeaw/eslint-config": "^1.0.9",
+		"@acdh-oeaw/eslint-config-node": "^1.0.11",
+		"@acdh-oeaw/prettier-config": "^2.0.0",
+		"@acdh-oeaw/tsconfig-lib": "^1.0.2",
+		"@changesets/changelog-github": "^0.5.0",
+		"@changesets/cli": "^2.27.7",
+		"@commitlint/cli": "^18.6.1",
+		"@keystatic/core": "^0.5.23",
+		"@mdx-js/mdx": "^3.0.1",
+		"@types/node": "^20.14.9",
+		"commander": "^12.1.0",
+		"eslint": "^8.57.0",
+		"is-ci": "^3.0.1",
+		"lint-staged": "^15.2.7",
+		"npm-run-all2": "^6.2.0",
+		"prettier": "^3.3.2",
+		"remark-frontmatter": "^5.0.0",
+		"remark-gfm": "^4.0.0",
+		"remark-mdx-frontmatter": "^5.0.0",
+		"simple-git-hooks": "^2.11.1",
+		"tsup": "^8.1.0",
+		"tsx": "^4.16.0",
+		"typescript": "^5.5.2",
+		"uvu": "^0.5.6"
+	},
+	"pnpm": {
+		"overrides": {
+			"@commitlint/config-conventional": "$@commitlint/cli"
+		},
+		"updateConfig": {
+			"ignoreDependencies": [
+				"@commitlint/cli",
+				"eslint"
+			]
+		}
+	},
+	"commitlint": {
+		"extends": "@acdh-oeaw/commitlint-config"
+	},
+	"eslintConfig": {
+		"extends": [
+			"@acdh-oeaw/eslint-config",
+			"@acdh-oeaw/eslint-config/strict",
+			"@acdh-oeaw/eslint-config-node"
+		]
+	},
+	"lint-staged": {
+		"*.ts": [
+			"eslint --cache --fix",
+			"prettier --cache --write"
+		],
+		"*.!(ts),!./test/fixtures/**": "prettier --cache --ignore-unknown --write"
+	},
+	"prettier": "@acdh-oeaw/prettier-config",
+	"simple-git-hooks": {
+		"commit-msg": "pnpm exec commitlint --edit",
+		"pre-commit": "pnpm exec lint-staged",
+		"pre-push": "pnpm run validate"
+	}
+}

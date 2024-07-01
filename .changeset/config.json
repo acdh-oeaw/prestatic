@@ -1,0 +1,8 @@
+{
+	"$schema": "https://unpkg.com/@changesets/config@3.0.1/schema.json",
+	"access": "public",
+	"baseBranch": "main",
+	"changelog": ["@changesets/changelog-github", { "repo": "acdh-oeaw/prestatic" }],
+	"commit": false,
+	"updateInternalDependencies": "patch"
+}

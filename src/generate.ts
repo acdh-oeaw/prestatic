@@ -89,7 +89,7 @@ async function createIndexFile(params: CreateIndexFileParams) {
 	entries.forEach(({ slug }) => {
 		const id = sanitize(slug);
 		exports.push({ slug, id });
-		imports.push(`import ${id} from "./${slug}" with { type: "json" };`);
+		imports.push(`import ${id} from "./${slug}.json" with { type: "json" };`);
 	});
 
 	await save(imports, exports);

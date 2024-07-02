@@ -101,20 +101,20 @@ export interface GenerateOptions<
 	TCollections extends Record<string, Collection<Record<string, ComponentSchema>, string>>,
 	TSingletons extends Record<string, Singleton<Record<string, ComponentSchema>>>,
 > {
+	compile: (file: VFile) => Promise<VFile>;
 	cwd?: string;
 	keystaticConfig: Config<TCollections, TSingletons>;
 	outputFolderPath: string;
-	processMdx: (file: VFile) => Promise<VFile>;
 }
 
 export async function generate<
 	TCollections extends Record<string, Collection<Record<string, ComponentSchema>, string>>,
 	TSingletons extends Record<string, Singleton<Record<string, ComponentSchema>>>,
 >({
+	compile,
 	cwd = process.cwd(),
 	keystaticConfig,
 	outputFolderPath: _outputFolderPath,
-	processMdx,
 }: GenerateOptions<TCollections, TSingletons>) {
 	const reader = createReader(cwd, keystaticConfig);
 
@@ -138,7 +138,7 @@ export async function generate<
 			entries,
 			async transformContent(content, _slug) {
 				const file = new VFile({ value: content, path });
-				return pick(await processMdx(file), ["data", "value"]);
+				return pick(await compile(file), ["data", "value"]);
 			},
 			save(content, slug) {
 				return writeFile(join(outputFolderPath, `${slug}.json`), content, { encoding: "utf-8" });
@@ -176,7 +176,7 @@ export async function generate<
 			entries,
 			async transformContent(content, _slug) {
 				const file = new VFile({ value: content, path });
-				return pick(await processMdx(file), ["data", "value"]);
+				return pick(await compile(file), ["data", "value"]);
 			},
 			save(content, slug) {
 				return writeFile(join(outputFolderPath, `${slug}.json`), content, { encoding: "utf-8" });

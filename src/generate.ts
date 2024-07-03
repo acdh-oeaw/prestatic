@@ -10,13 +10,13 @@ import { sanitize } from "./sanitize";
 import { transform } from "./transform";
 
 interface CollectContentFieldsParams {
-	contentFields: Array<string>;
-	path?: string | undefined;
+	contentFields: Array<Array<string>>;
+	path?: Array<string> | undefined;
 	schema: Record<string, ComponentSchema>;
 }
 
 function collectContentFields(params: CollectContentFieldsParams): void {
-	const { contentFields, path, schema } = params;
+	const { contentFields, path = [], schema } = params;
 
 	for (const [fieldName, fieldConfig] of Object.entries(schema)) {
 		switch (fieldConfig.kind) {
@@ -39,13 +39,17 @@ function collectContentFields(params: CollectContentFieldsParams): void {
 
 			case "form": {
 				if (fieldConfig.formKind === "content") {
-					contentFields.push(path != null ? [path, fieldName].join(".") : fieldName);
+					contentFields.push([...path, fieldName]);
 				}
 				break;
 			}
 
 			case "object": {
-				collectContentFields({ contentFields, path: fieldName, schema: fieldConfig.fields });
+				collectContentFields({
+					contentFields,
+					path: [...path, fieldName],
+					schema: fieldConfig.fields,
+				});
 				break;
 			}
 		}
@@ -55,7 +59,7 @@ function collectContentFields(params: CollectContentFieldsParams): void {
 //
 
 interface TransformContentFieldsParams {
-	contentFields: Array<string>;
+	contentFields: Array<Array<string>>;
 	entries: Array<{ slug: string; entry: Record<string, unknown> }>;
 	transformContent: (content: string, slug: string) => Promise<object>;
 	save: (content: string, slug: string) => Promise<void>;
@@ -66,7 +70,7 @@ async function transformContentFields(params: TransformContentFieldsParams): Pro
 
 	for (const { entry, slug } of entries) {
 		for (const contentField of contentFields) {
-			await transform(entry, contentField.split("."), transformContent, slug);
+			await transform(entry, contentField, transformContent, slug);
 		}
 
 		await save(JSON.stringify(entry, null, 2), slug);
@@ -137,7 +141,7 @@ export async function generate<
 		const outputFolderPath = join(_outputFolderPath, collectionName);
 		await mkdir(outputFolderPath, { recursive: true });
 
-		const contentFields: Array<string> = [];
+		const contentFields: Array<Array<string>> = [];
 		collectContentFields({ contentFields, schema });
 
 		await transformContentFields({
@@ -177,7 +181,7 @@ export async function generate<
 		const outputFolderPath = join(_outputFolderPath, collectionName);
 		await mkdir(outputFolderPath, { recursive: true });
 
-		const contentFields: Array<string> = [];
+		const contentFields: Array<Array<string>> = [];
 		collectContentFields({ contentFields, schema });
 
 		await transformContentFields({

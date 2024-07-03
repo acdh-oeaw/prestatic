@@ -107,6 +107,11 @@ export interface GenerateOptions<
 	outputFolderPath: string;
 }
 
+export interface GenerateStats {
+	collections: Map<string, number>;
+	singletons: Map<string, number>;
+}
+
 export async function generate<
 	TCollections extends Record<string, Collection<Record<string, ComponentSchema>, string>>,
 	TSingletons extends Record<string, Singleton<Record<string, ComponentSchema>>>,
@@ -115,7 +120,9 @@ export async function generate<
 	cwd = process.cwd(),
 	keystaticConfig,
 	outputFolderPath: _outputFolderPath,
-}: GenerateOptions<TCollections, TSingletons>) {
+}: GenerateOptions<TCollections, TSingletons>): Promise<GenerateStats> {
+	const stats: GenerateStats = { collections: new Map(), singletons: new Map() };
+
 	const reader = createReader(cwd, keystaticConfig);
 
 	const { collections, singletons } = keystaticConfig;
@@ -153,6 +160,8 @@ export async function generate<
 				return writeFile(filePath, fileContent, { encoding: "utf-8" });
 			},
 		});
+
+		stats.collections.set(collectionName, entries.length);
 	}
 
 	for (const [collectionName, { path: _path, schema }] of Object.entries(singletons ?? {})) {
@@ -192,5 +201,9 @@ export async function generate<
 				return writeFile(filePath, fileContent, { encoding: "utf-8" });
 			},
 		});
+
+		stats.singletons.set(collectionName, entries.length);
 	}
+
+	return stats;
 }

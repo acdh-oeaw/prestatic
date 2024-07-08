@@ -10,7 +10,7 @@ import { sanitize } from "./sanitize";
 import { transform } from "./transform";
 
 interface CollectContentFieldsParams {
-	contentFields: Array<Array<string>>;
+	contentFields: Array<Array<Record<string, Array<Array<string>>> | string>>;
 	path?: Array<string> | undefined;
 	schema: Record<string, ComponentSchema>;
 }
@@ -34,7 +34,27 @@ function collectContentFields(params: CollectContentFieldsParams): void {
 			}
 
 			case "conditional": {
-				throw new Error("Not yet implemented.");
+				const _contentFields = {};
+
+				for (const [option, config] of Object.entries(fieldConfig.values)) {
+					const contentFields: Array<Array<string>> = [];
+
+					collectContentFields({
+						contentFields,
+						path,
+						schema: config.fields,
+					});
+
+					if (contentFields.length > 0) {
+						_contentFields[option] = contentFields;
+					}
+				}
+
+				if (Object.keys(_contentFields).length > 0) {
+					contentFields.push(_contentFields);
+				}
+
+				break;
 			}
 
 			case "form": {

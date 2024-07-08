@@ -1,0 +1,35 @@
+{
+	"title": "The post number 638",
+	"carousel": {
+		"slides": [
+			{
+				"title": "The first slide"
+			},
+			{
+				"title": "The second slide"
+			}
+		]
+	},
+	"sections": [
+		{
+			"discriminant": "text",
+			"value": {
+				"title": "The text section"
+			}
+		},
+		{
+			"discriminant": "cards",
+			"value": {
+				"title": "The cards section",
+				"cards": [
+					{
+						"title": "The first card"
+					},
+					{
+						"title": "The second card"
+					}
+				]
+			}
+		}
+	]
+}

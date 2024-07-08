@@ -1,0 +1,13 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": "@acdh-oeaw/tsconfig",
+	"compilerOptions": {
+		"plugins": [{ "name": "next" }],
+		"paths": {
+			"@content/*": ["./.content-collections/*"],
+			"@/*": ["./*"]
+		}
+	},
+	"include": ["./next-env.d.ts", "./**/*.ts", "./**/*.tsx", "./**/*.js", ".next/types/**/*.ts"],
+	"exclude": ["node_modules"]
+}

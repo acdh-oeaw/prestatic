@@ -1,0 +1,20 @@
+---
+import { run } from "@mdx-js/mdx";
+import * as runtime from "astro/jsx-runtime";
+
+import { entry } from "@content/singletons/indexPage/__index.mjs";
+import RootLayout from "@/layouts/root.astro";
+
+const { default: Content } = await run(entry.content, { ...(runtime as any) });
+---
+
+<RootLayout title={entry.title}>
+	<div>
+		<main>
+			<h1>{entry.title}</h1>
+			<div class="prose">
+				<Content />
+			</div>
+		</main>
+	</div>
+</RootLayout>

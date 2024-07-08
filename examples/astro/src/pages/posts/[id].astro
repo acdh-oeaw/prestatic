@@ -1,0 +1,29 @@
+---
+import { run } from "@mdx-js/mdx";
+import * as runtime from "astro/jsx-runtime";
+
+import { collection } from "@content/collections/posts/__index.mjs";
+import RootLayout from "@/layouts/root.astro";
+
+export async function getStaticPaths() {
+	return Object.entries(collection).map(([id, post]) => {
+		return { params: { id }, props: { post } };
+	});
+}
+
+const { id } = Astro.params;
+const { post } = Astro.props;
+
+const { default: Content } = await run(post.entry.summary, { ...(runtime as any) });
+---
+
+<RootLayout title="Posts">
+	<div>
+		<main>
+			<h1>Posts</h1>
+			<div class="prose">
+				<Content />
+			</div>
+		</main>
+	</div>
+</RootLayout>

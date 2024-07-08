@@ -1,0 +1,15 @@
+packages:
+  - ./examples/*/
+  - ./packages/*/
+catalog:
+  "@acdh-oeaw/eslint-config": ^1.0.10
+  "@acdh-oeaw/lib": ^0.1.12
+  "@acdh-oeaw/prettier-config": ^2.0.0
+  "@acdh-oeaw/tsconfig": ^1.1.1
+  "@keystatic/core": ^0.5.27
+  "@types/node": ^20.14.10
+  eslint: ^8.57.0
+  prettier: ^3.3.3
+  tsx: ^4.16.2
+  typescript: ^5.5.3
+  vitest: ^2.0.3

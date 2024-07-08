@@ -1,0 +1,33 @@
+---
+import { run } from "@mdx-js/mdx";
+import * as runtime from "astro/jsx-runtime";
+
+import { collection } from "@content/collections/posts/__index.mjs";
+import RootLayout from "@/layouts/root.astro";
+---
+
+<RootLayout title="Posts">
+	<div>
+		<main>
+			<h1>Posts</h1>
+			<ul>
+				{
+					Object.entries(collection).map(async ([id, post]) => {
+						const { default: Content } = await run(post.entry.summary, { ...(runtime as any) });
+
+						return (
+							<li>
+								<article>
+									<h2>{post.entry.title}</h2>
+									<div class="prose">
+										<Content />
+									</div>
+								</article>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</main>
+	</div>
+</RootLayout>

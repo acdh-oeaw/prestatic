@@ -1,0 +1,70 @@
+{
+	"name": "@acdh-oeaw/prestatic-example-astro",
+	"private": true,
+	"license": "MIT",
+	"type": "module",
+	"scripts": {
+		"build": "astro build",
+		"content:build": "tsx ./scripts/build-content.ts",
+		"dev": "astro dev",
+		"format:check": "prettier . !\"./content/**\" --cache --cache-location ../../.prettiercache --check --ignore-path ../../.gitignore",
+		"format:fix": "pnpm run format:check --write",
+		"lint:check": "eslint . --cache --ignore-path ../../.gitignore",
+		"lint:fix": "pnpm run lint:check --fix",
+		"start": "astro preview",
+		"types:check": "astro check"
+	},
+	"dependencies": {
+		"@acdh-oeaw/lib": "catalog:",
+		"@astrojs/node": "^8.3.2",
+		"@astrojs/react": "^3.6.0",
+		"@keystatic/astro": "^5.0.0",
+		"@keystatic/core": "catalog:",
+		"@mdx-js/mdx": "^3.0.1",
+		"astro": "^4.11.5",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
+	},
+	"devDependencies": {
+		"@acdh-oeaw/eslint-config": "catalog:",
+		"@acdh-oeaw/eslint-config-astro": "^1.0.14",
+		"@acdh-oeaw/prestatic-core": "workspace:*",
+		"@acdh-oeaw/prettier-config": "catalog:",
+		"@acdh-oeaw/tsconfig": "catalog:",
+		"@astrojs/check": "^0.8.1",
+		"@tailwindcss/typography": "^0.5.13",
+		"@types/node": "catalog:",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"eslint": "catalog:",
+		"postcss": "^8.4.39",
+		"prettier": "catalog:",
+		"tailwindcss": "^3.4.4",
+		"tsx": "catalog:",
+		"typescript": "catalog:"
+	},
+	"eslintConfig": {
+		"extends": [
+			"@acdh-oeaw/eslint-config",
+			"@acdh-oeaw/eslint-config/strict",
+			"@acdh-oeaw/eslint-config-astro"
+		]
+	},
+	"lint-staged": {
+		"*.astro": [
+			"eslint --cache --fix",
+			"prettier --cache --cache-location ../../.prettiercache --write"
+		],
+		"*.@(ts|tsx)": [
+			"eslint --cache --fix",
+			"prettier --cache --cache-location ../../.prettiercache --write"
+		],
+		"*.!(astro|ts|tsx), !./content/**": "prettier --cache --cache-location ../../.prettiercache --ignore-unknown --write"
+	},
+	"postcss": {
+		"plugins": {
+			"tailwindcss": {}
+		}
+	},
+	"prettier": "@acdh-oeaw/prettier-config"
+}

@@ -2,18 +2,33 @@
 node_modules/
 .pnpm-store/
 
-# build output
-dist/
-
 # logs
 *.log
 
+# non-public environment variables
+.env.local
+.env.*.local
+
 # caches
 .eslintcache
+.prettiercache
 *.tsbuildinfo
+.turbo
 
 # misc
 .DS_Store
+.idea/
 
-# test output
-.content/
+# build output
+dist/
+
+# content output
+.content-collections/
+
+# astro
+.astro/
+
+# next.js
+.next/
+out/
+next-env.d.ts

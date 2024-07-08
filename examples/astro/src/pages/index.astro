@@ -1,0 +1,13 @@
+---
+import RootLayout from "@/layouts/root.astro";
+
+import { entry } from "@content/singletons/indexPage/__index.mjs";
+---
+
+<RootLayout title={entry.title}>
+	<div>
+		<main>
+			<h1>{entry.title}</h1>
+		</main>
+	</div>
+</RootLayout>

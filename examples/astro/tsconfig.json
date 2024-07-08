@@ -1,0 +1,15 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"extends": ["astro/tsconfigs/base", "@acdh-oeaw/tsconfig"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+		"paths": {
+			"@content/*": ["./.content-collections/*"],
+			"@/*": ["./src/*"],
+			"~/*": ["./*"]
+		}
+	},
+	"exclude": ["dist", "node_modules"]
+}

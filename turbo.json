@@ -1,0 +1,35 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**", ".astro/**"]
+		},
+		"dev": {
+			"persistent": true,
+			"cache": false
+		},
+		"//#format:check": {
+			"outputs": [".prettiercache"]
+		},
+		"//#format:fix": {
+			"outputs": [".prettiercache"]
+		},
+		"lint:check": {
+			"dependsOn": ["^lint:check"],
+			"outputs": [".eslintcache", ".stylelintcache"]
+		},
+		"lint:fix": {
+			"dependsOn": ["^lint:fix"],
+			"outputs": [".eslintcache", ".stylelintcache"]
+		},
+		"test": {
+			"persistent": true,
+			"cache": false
+		},
+		"types:check": {
+			"dependsOn": ["^types:check"],
+			"outputs": ["*.tsbuildinfo"]
+		}
+	}
+}

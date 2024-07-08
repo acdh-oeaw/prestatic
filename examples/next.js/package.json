@@ -1,0 +1,63 @@
+{
+	"name": "@acdh-oeaw/prestatic-example-next.js",
+	"private": true,
+	"license": "MIT",
+	"type": "module",
+	"scripts": {
+		"build": "next build",
+		"content:build": "tsx ./scripts/build-content.ts",
+		"dev": "next dev",
+		"format:check": "prettier . --cache --cache-location ../../.prettiercache --check --ignore-path ../../.gitignore",
+		"format:fix": "pnpm run format:check --write",
+		"lint:check": "pnpm run eslint . --cache --ignore-path ../../.gitignore",
+		"lint:fix": "pnpm run lint:check --fix",
+		"start": "next start",
+		"types:check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@acdh-oeaw/lib": "catalog:",
+		"@keystatic/core": "catalog:",
+		"@keystatic/next": "^5.0.1",
+		"next": "^14.2.5",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
+	},
+	"devDependencies": {
+		"@acdh-oeaw/eslint-config": "catalog:",
+		"@acdh-oeaw/eslint-config-next": "^1.0.14",
+		"@acdh-oeaw/eslint-config-react": "^1.0.11",
+		"@acdh-oeaw/prestatic-core": "workspace:*",
+		"@acdh-oeaw/prettier-config": "catalog:",
+		"@acdh-oeaw/tsconfig": "catalog:",
+		"@types/node": "catalog:",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"eslint": "catalog:",
+		"postcss": "^8.4.39",
+		"prettier": "catalog:",
+		"tailwindcss": "^3.4.4",
+		"tsx": "catalog:",
+		"typescript": "catalog:"
+	},
+	"eslintConfig": {
+		"extends": [
+			"@acdh-oeaw/eslint-config",
+			"@acdh-oeaw/eslint-config/strict",
+			"@acdh-oeaw/eslint-config-react",
+			"@acdh-oeaw/eslint-config-next"
+		]
+	},
+	"lint-staged": {
+		"*.@(ts|tsx)": [
+			"eslint --cache --fix",
+			"prettier --cache --cache-location ../../.prettiercache --write"
+		],
+		"*.!(ts|tsx)": "prettier --cache --cache-location ../../.prettiercache --ignore-unknown --write"
+	},
+	"postcss": {
+		"plugins": {
+			"tailwindcss": {}
+		}
+	},
+	"prettier": "@acdh-oeaw/prettier-config"
+}

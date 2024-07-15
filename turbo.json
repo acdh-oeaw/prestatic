@@ -6,8 +6,8 @@
 			"outputs": ["dist/**", ".astro/**"]
 		},
 		"dev": {
-			"persistent": true,
-			"cache": false
+			"cache": false,
+			"persistent": true
 		},
 		"//#format:check": {
 			"outputs": [".prettiercache"]

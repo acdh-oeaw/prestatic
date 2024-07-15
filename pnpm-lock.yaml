@@ -100,7 +100,7 @@ importers:
         version: 5.0.0(@keystatic/core@0.5.27(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@4.11.5(@types/node@20.14.10)(typescript@5.5.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@keystatic/core':
         specifier: 'catalog:'
-        version: 0.5.27(next@14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.5.27(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       astro:
         specifier: ^4.11.5
         version: 4.11.5(@types/node@20.14.10)(typescript@5.5.3)
@@ -113,10 +113,10 @@ importers:
     devDependencies:
       '@acdh-oeaw/eslint-config':
         specifier: 'catalog:'
-        version: 1.0.10(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0)(typescript@5.5.3)
+        version: 1.0.10(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0)(typescript@5.5.3)
       '@acdh-oeaw/eslint-config-astro':
         specifier: ^1.0.14
-        version: 1.0.14(@acdh-oeaw/eslint-config@1.0.10(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0)(typescript@5.5.3)
+        version: 1.0.14(@acdh-oeaw/eslint-config@1.0.10(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0)(typescript@5.5.3)
       '@acdh-oeaw/prestatic-core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -161,7 +161,7 @@ importers:
         version: 0.1.12
       '@keystatic/core':
         specifier: 'catalog:'
-        version: 0.5.27(next@14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.5.27(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@keystatic/next':
         specifier: ^5.0.1
         version: 5.0.1(@keystatic/core@0.5.27(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -226,6 +226,12 @@ importers:
       '@acdh-oeaw/lib':
         specifier: 'catalog:'
         version: 0.1.12
+      escodegen:
+        specifier: ^2.1.0
+        version: 2.1.0
+      estree-util-value-to-estree:
+        specifier: ^3.1.2
+        version: 3.1.2
       remove:
         specifier: ^0.1.5
         version: 0.1.5
@@ -235,7 +241,7 @@ importers:
     devDependencies:
       '@acdh-oeaw/eslint-config':
         specifier: 'catalog:'
-        version: 1.0.10(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0)(typescript@5.5.3)
+        version: 1.0.10(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0)(typescript@5.5.3)
       '@acdh-oeaw/prettier-config':
         specifier: 'catalog:'
         version: 2.0.0(prettier@3.3.2)
@@ -244,10 +250,16 @@ importers:
         version: 1.1.1(typescript@5.5.3)
       '@keystatic/core':
         specifier: 'catalog:'
-        version: 0.5.27(next@14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.5.27(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mdx-js/mdx':
         specifier: ^3.0.1
         version: 3.0.1
+      '@types/escodegen':
+        specifier: ^0.0.10
+        version: 0.0.10
+      '@types/estree':
+        specifier: ^1.0.5
+        version: 1.0.5
       '@types/node':
         specifier: 'catalog:'
         version: 20.14.10
@@ -1863,6 +1875,9 @@ packages:
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
 
+  '@types/escodegen@0.0.10':
+    resolution: {integrity: sha512-IVvcNLEFbiL17qiGRGzyfx/u9K6lA5w6wcQSIgv2h4JG3ZAFIY1Be9ITTSPuARIxRpzW54s8OvcF6PdonBbDzg==}
+
   '@types/estree-jsx@1.0.5':
     resolution: {integrity: sha512-52CcUVNFyfb1A2ALocQw/Dd1BQFNmSdkuC3BkZ6iqhdMfQz7JWOFRuJFloOzjk+6WijU56m9oKXFAXc7o3Towg==}
 
@@ -2774,6 +2789,11 @@ packages:
     resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
     engines: {node: '>=12'}
 
+  escodegen@2.1.0:
+    resolution: {integrity: sha512-2NlIDTwUWJN0mRPQOdtQBzbUHvdGY2P1VXSyU83Q3xKxM7WHX2Ql8dKq782Q9TgQUNOLEzEYu9bzLNj1q88I5w==}
+    engines: {node: '>=6.0'}
+    hasBin: true
+
   eslint-compat-utils@0.5.1:
     resolution: {integrity: sha512-3z3vFexKIEnjHE3zCMRo6fn/e44U7T1khUjg+Hp0ZQMCigh28rALD0nPFBcGZuiLC5rLZa2ubQHDRln09JfU2Q==}
     engines: {node: '>=12'}
@@ -2931,6 +2951,9 @@ packages:
 
   estree-util-to-js@2.0.0:
     resolution: {integrity: sha512-WDF+xj5rRWmD5tj6bIqRi6CkLIXbbNQUcxQHzGysQzvHmdYG2G7p/Tf0J0gpxGgkeMZNTIjT/AoSvC9Xehcgdg==}
+
+  estree-util-value-to-estree@3.1.2:
+    resolution: {integrity: sha512-S0gW2+XZkmsx00tU2uJ4L9hUT7IFabbml9pHh2WQqFmAbxit++YGZne0sKJbNwkj9Wvg9E4uqWl4nCIFQMmfag==}
 
   estree-util-visit@2.0.0:
     resolution: {integrity: sha512-m5KgiH85xAhhW8Wta0vShLcUvOsh3LLPI2YVwcbio1l7E09NTLL1EyMZFM1OyWowoH0skScNbhOPl4kcBgzTww==}
@@ -4789,6 +4812,10 @@ packages:
     resolution: {integrity: sha512-LbrmJOMUSdEVxIKvdcJzQC+nQhe8FUZQTXQy6+I75skNgn3OoQ0DZA8YnFa7gp8tqtL3KPf1kmo0R5DoApeSGQ==}
     engines: {node: '>=0.10.0'}
 
+  source-map@0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
+    engines: {node: '>=0.10.0'}
+
   source-map@0.7.4:
     resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
     engines: {node: '>= 8'}
@@ -5620,9 +5647,9 @@ snapshots:
       '@commitlint/cli': 18.6.1(@types/node@20.14.10)(typescript@5.5.3)
       '@commitlint/config-conventional': 18.6.3
 
-  '@acdh-oeaw/eslint-config-astro@1.0.14(@acdh-oeaw/eslint-config@1.0.10(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0)(typescript@5.5.3)':
+  '@acdh-oeaw/eslint-config-astro@1.0.14(@acdh-oeaw/eslint-config@1.0.10(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0)(typescript@5.5.3)':
     dependencies:
-      '@acdh-oeaw/eslint-config': 1.0.10(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0)(typescript@5.5.3)
+      '@acdh-oeaw/eslint-config': 1.0.10(eslint-plugin-import@2.29.1(eslint@8.57.0))(eslint@8.57.0)(typescript@5.5.3)
       eslint-plugin-astro: 1.2.3(eslint@8.57.0)(typescript@5.5.3)
       eslint-plugin-jsx-a11y: 6.9.0(eslint@8.57.0)
     transitivePeerDependencies:
@@ -6695,7 +6722,7 @@ snapshots:
 
   '@juggle/resize-observer@3.4.0': {}
 
-  '@keystar/ui@0.7.8(next@14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@keystar/ui@0.7.8(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.7
       '@emotion/css': 11.11.2
@@ -6791,7 +6818,7 @@ snapshots:
   '@keystatic/astro@5.0.0(@keystatic/core@0.5.27(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@4.11.5(@types/node@20.14.10)(typescript@5.5.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.7
-      '@keystatic/core': 0.5.27(next@14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@keystatic/core': 0.5.27(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/react': 18.3.3
       astro: 4.11.5(@types/node@20.14.10)(typescript@5.5.3)
       cookie: 0.5.0
@@ -6799,7 +6826,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       set-cookie-parser: 2.6.0
 
-  '@keystatic/core@0.5.27(next@14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@keystatic/core@0.5.27(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.7
       '@braintree/sanitize-url': 6.0.4
@@ -6807,7 +6834,7 @@ snapshots:
       '@emotion/weak-memoize': 0.3.1
       '@floating-ui/react': 0.24.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@internationalized/string': 3.2.3
-      '@keystar/ui': 0.7.8(next@14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@keystar/ui': 0.7.8(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@markdoc/markdoc': 0.4.0(@types/react@18.3.3)(react@18.3.1)
       '@react-aria/focus': 3.17.1(react@18.3.1)
       '@react-aria/i18n': 3.11.1(react@18.3.1)
@@ -6882,7 +6909,7 @@ snapshots:
   '@keystatic/next@5.0.1(@keystatic/core@0.5.27(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.7
-      '@keystatic/core': 0.5.27(next@14.2.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@keystatic/core': 0.5.27(next@14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/react': 18.3.3
       chokidar: 3.6.0
       next: 14.2.5(@babel/core@7.24.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7982,6 +8009,8 @@ snapshots:
   '@types/debug@4.1.12':
     dependencies:
       '@types/ms': 0.7.34
+
+  '@types/escodegen@0.0.10': {}
 
   '@types/estree-jsx@1.0.5':
     dependencies:
@@ -9129,6 +9158,14 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
+  escodegen@2.1.0:
+    dependencies:
+      esprima: 4.0.1
+      estraverse: 5.3.0
+      esutils: 2.0.3
+    optionalDependencies:
+      source-map: 0.6.1
+
   eslint-compat-utils@0.5.1(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
@@ -9443,6 +9480,10 @@ snapshots:
       '@types/estree-jsx': 1.0.5
       astring: 1.8.6
       source-map: 0.7.4
+
+  estree-util-value-to-estree@3.1.2:
+    dependencies:
+      '@types/estree': 1.0.5
 
   estree-util-visit@2.0.0:
     dependencies:
@@ -11755,6 +11796,9 @@ snapshots:
   source-map-js@1.2.0: {}
 
   source-map@0.5.7: {}
+
+  source-map@0.6.1:
+    optional: true
 
   source-map@0.7.4: {}
 
